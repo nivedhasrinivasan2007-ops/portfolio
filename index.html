@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nivedha.S | AI Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Rajdhani',sans-serif;color:white;overflow-x:hidden;background:#010009;cursor:none;}
+
+/* ══════════════════════════════════
+   COLOUR PALETTE
+   c1 = electric violet  #a855f7
+   c2 = hot magenta      #e879f9
+   c3 = cosmic cyan      #22d3ee
+   c4 = golden amber     #fbbf24
+   c5 = emerald          #34d399
+   c6 = rose             #fb7185
+══════════════════════════════════ */
+:root{
+  --c1:#a855f7;--c2:#e879f9;--c3:#22d3ee;
+  --c4:#fbbf24;--c5:#34d399;--c6:#fb7185;
+  --bg:#010009;
+}
+
+/* ── AURORA BACKGROUND ── */
+.aurora{position:fixed;pointer-events:none;z-index:0;border-radius:50%;filter:blur(100px);}
+.a1{width:900px;height:900px;background:radial-gradient(circle,rgba(168,85,247,0.18),rgba(91,33,182,0.07),transparent 70%);top:-350px;left:-350px;animation:am1 22s ease-in-out infinite;}
+.a2{width:750px;height:750px;background:radial-gradient(circle,rgba(232,121,249,0.14),rgba(139,92,246,0.06),transparent 70%);top:15%;right:-280px;animation:am2 26s ease-in-out infinite;}
+.a3{width:650px;height:650px;background:radial-gradient(circle,rgba(34,211,238,0.13),rgba(6,182,212,0.05),transparent 70%);bottom:-200px;left:5%;animation:am3 19s ease-in-out infinite;}
+.a4{width:550px;height:550px;background:radial-gradient(circle,rgba(251,191,36,0.1),rgba(245,158,11,0.04),transparent 70%);top:50%;left:40%;animation:am4 24s ease-in-out infinite;}
+.a5{width:600px;height:600px;background:radial-gradient(circle,rgba(251,113,133,0.12),rgba(244,63,94,0.04),transparent 70%);top:70%;right:10%;animation:am5 28s ease-in-out infinite;}
+@keyframes am1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(130px,110px) scale(1.22)}}
+@keyframes am2{0%,100%{transform:translate(0,0)}50%{transform:translate(-110px,160px) scale(1.18)}}
+@keyframes am3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(90px,-110px) scale(1.28)}}
+@keyframes am4{0%,100%{transform:translate(0,0) scale(1.1)}50%{transform:translate(-90px,90px) scale(0.88)}}
+@keyframes am5{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(70px,-70px) scale(1.15)}}
+
+/* Grid */
+.grid-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(168,85,247,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(34,211,238,0.03) 1px,transparent 1px);
+  background-size:60px 60px;}
+
+/* ── CURSOR ── */
+.cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--c2);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);box-shadow:0 0 14px var(--c2),0 0 28px var(--c1);}
+.cursor-ring{position:fixed;width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(168,85,247,0.55);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left 0.07s,top 0.07s;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:16px 48px;background:rgba(1,0,9,0.65);backdrop-filter:blur(28px);border-bottom:1px solid rgba(168,85,247,0.1);}
+.logo{font-family:'Orbitron',sans-serif;font-size:17px;letter-spacing:3px;font-weight:900;background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+nav ul{list-style:none;display:flex;gap:28px;}
+nav ul a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:12px;letter-spacing:2px;transition:0.3s;text-transform:uppercase;}
+nav ul a:hover{color:var(--c3);}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 20px 80px;position:relative;z-index:1;}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.28);padding:7px 22px;border-radius:50px;font-size:11px;letter-spacing:3px;color:var(--c2);margin-bottom:26px;text-transform:uppercase;animation:fadeD 0.8s ease both;}
+.hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--c2);box-shadow:0 0 8px var(--c2);animation:blink 1.5s infinite;}
+@keyframes fadeD{from{opacity:0;transform:translateY(-18px)}to{opacity:1}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.15}}
+.hero h1{font-family:'Orbitron',sans-serif;font-size:clamp(30px,7vw,72px);font-weight:900;line-height:1.05;margin-bottom:10px;animation:fadeU 0.9s 0.2s ease both;}
+.hg{background:linear-gradient(135deg,#fff 0%,var(--c3) 20%,var(--c1) 45%,var(--c2) 65%,var(--c4) 85%,var(--c6) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 30px rgba(168,85,247,0.4));}
+.hero-sub{font-size:15px;color:rgba(255,255,255,0.4);letter-spacing:4px;margin-bottom:42px;text-transform:uppercase;animation:fadeU 0.9s 0.35s ease both;}
+@keyframes fadeU{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;animation:fadeU 0.9s 0.5s ease both;}
+.bp{padding:13px 32px;background:linear-gradient(135deg,var(--c1),var(--c2));color:white;border:none;border-radius:10px;font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;cursor:none;text-decoration:none;transition:0.3s;text-transform:uppercase;}
+.bp:hover{box-shadow:0 0 40px rgba(168,85,247,0.6),0 0 80px rgba(232,121,249,0.2);transform:translateY(-3px);}
+.bo{padding:13px 32px;background:transparent;color:var(--c3);border:1px solid rgba(34,211,238,0.35);border-radius:10px;font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;cursor:none;text-decoration:none;transition:0.3s;text-transform:uppercase;}
+.bo:hover{background:rgba(34,211,238,0.08);border-color:var(--c3);transform:translateY(-3px);box-shadow:0 0 24px rgba(34,211,238,0.3);}
+.scroll-hint{position:absolute;bottom:32px;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:10px;letter-spacing:3px;color:rgba(255,255,255,0.18);text-transform:uppercase;}
+.scroll-hint::after{content:'';width:1px;height:42px;background:linear-gradient(to bottom,rgba(168,85,247,0.6),transparent);animation:sa 1.8s ease-in-out infinite;}
+@keyframes sa{0%{opacity:0;transform:scaleY(0);transform-origin:top}60%{opacity:1;transform:scaleY(1)}100%{opacity:0;transform:scaleY(0);transform-origin:bottom}}
+
+/* ── CARD ── */
+.card{background:rgba(255,255,255,0.022);backdrop-filter:blur(28px);border-radius:24px;border:1px solid rgba(168,85,247,0.1);padding:32px;transition:0.4s;position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.5),rgba(232,121,249,0.5),transparent);}
+.card:hover{transform:translateY(-8px);box-shadow:0 24px 64px rgba(0,0,0,0.5),0 0 60px rgba(168,85,247,0.1);border-color:rgba(168,85,247,0.25);}
+
+/* ── SECTIONS ── */
+section{padding:90px 20px;max-width:1100px;margin:0 auto;opacity:0;transform:translateY(50px);transition:0.85s ease;position:relative;z-index:1;}
+section.show{opacity:1;transform:translateY(0);}
+.sl{font-size:10px;letter-spacing:4px;color:var(--c3);text-transform:uppercase;margin-bottom:8px;}
+.st{font-family:'Orbitron',sans-serif;font-size:clamp(20px,4vw,36px);font-weight:700;margin-bottom:44px;background:linear-gradient(90deg,white,rgba(255,255,255,0.7));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+/* ── PROFILE ── */
+.pw{display:flex;flex-wrap:wrap;gap:64px;justify-content:center;align-items:center;}
+.pz{position:relative;width:270px;height:270px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.paura{position:absolute;inset:-50px;border-radius:50%;background:radial-gradient(circle,rgba(168,85,247,0.22) 0%,rgba(34,211,238,0.1) 45%,transparent 70%);animation:ap 3s ease-in-out infinite;}
+@keyframes ap{0%,100%{transform:scale(1);opacity:0.65}50%{transform:scale(1.2);opacity:1}}
+
+/* Rainbow ring */
+.r1{position:absolute;inset:-8px;border-radius:50%;background:conic-gradient(var(--c3),var(--c1),var(--c2),var(--c4),var(--c6),var(--c5),var(--c3));animation:sf 2.5s linear infinite;z-index:1;}
+.r2{position:absolute;inset:-22px;border-radius:50%;border:1.5px dashed rgba(232,121,249,0.35);animation:sr 7s linear infinite;z-index:1;}
+.r3{position:absolute;inset:-40px;border-radius:50%;border:1px solid rgba(34,211,238,0.14);animation:sf 12s linear infinite;z-index:1;}
+.r3::before{content:'';position:absolute;top:-5px;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:var(--c3);box-shadow:0 0 16px var(--c3),0 0 32px var(--c3);}
+.r3::after{content:'';position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:8px;height:8px;border-radius:50%;background:var(--c4);box-shadow:0 0 14px var(--c4),0 0 28px var(--c4);}
+.r4{position:absolute;inset:-62px;border-radius:50%;border:1px solid rgba(251,191,36,0.08);animation:sr 22s linear infinite;z-index:1;}
+.r4::before{content:'';position:absolute;top:30%;left:-5px;width:8px;height:8px;border-radius:50%;background:var(--c6);box-shadow:0 0 12px var(--c6);}
+@keyframes sf{to{transform:rotate(360deg)}}
+@keyframes sr{to{transform:rotate(-360deg)}}
+.pz img{width:235px;height:235px;border-radius:50%;object-fit:cover;border:4px solid #010009;position:relative;z-index:2;}
+.sbadge{position:absolute;bottom:14px;right:-6px;background:rgba(1,0,9,0.96);border:1.5px solid var(--c5);border-radius:50px;padding:5px 14px;font-size:11px;letter-spacing:1px;color:var(--c5);z-index:3;display:flex;align-items:center;gap:6px;white-space:nowrap;}
+.sdot{width:7px;height:7px;background:var(--c5);border-radius:50%;box-shadow:0 0 8px var(--c5);animation:blink 1.2s infinite;}
+
+/* Name */
+.pt{max-width:510px;}
+.pe{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:3px;color:var(--c3);text-transform:uppercase;margin-bottom:12px;}
+.pe::before{content:'';width:28px;height:1px;background:linear-gradient(90deg,var(--c3),transparent);}
+.pname-wrap{position:relative;margin-bottom:12px;}
+.pname{font-family:'Orbitron',sans-serif;font-size:clamp(44px,6.5vw,68px);font-weight:900;line-height:1;background:linear-gradient(135deg,#fff 0%,var(--c3) 22%,var(--c1) 48%,var(--c2) 68%,var(--c4) 88%,var(--c6) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.pname-shadow{position:absolute;top:0;left:0;font-family:'Orbitron',sans-serif;font-size:clamp(44px,6.5vw,68px);font-weight:900;line-height:1;background:linear-gradient(135deg,var(--c1),var(--c2),var(--c3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:blur(24px);opacity:0.45;pointer-events:none;user-select:none;}
+.ptags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.ptag{display:inline-block;padding:5px 14px;border-radius:6px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;}
+.ptag-v{background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.28);color:var(--c1);}
+.ptag-c{background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.25);color:var(--c3);}
+.pdesc{color:rgba(255,255,255,0.58);line-height:1.85;font-size:16px;margin-bottom:26px;border-left:2px solid rgba(168,85,247,0.3);padding-left:16px;}
+.pstats{display:flex;margin-bottom:28px;border:1px solid rgba(168,85,247,0.12);border-radius:14px;overflow:hidden;background:rgba(168,85,247,0.04);}
+.ps{flex:1;padding:16px 10px;text-align:center;border-right:1px solid rgba(168,85,247,0.1);}
+.ps:last-child{border-right:none;}
+.psn{font-family:'Orbitron',sans-serif;font-size:22px;font-weight:900;}
+.psn-v{background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.psn-c{background:linear-gradient(135deg,var(--c3),var(--c5));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.psn-a{background:linear-gradient(135deg,var(--c4),var(--c6));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.psl{font-size:9px;letter-spacing:1.5px;color:rgba(255,255,255,0.28);text-transform:uppercase;margin-top:4px;}
+
+/* Links */
+.links{display:flex;flex-wrap:wrap;gap:10px;}
+.links a{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:10px;text-decoration:none;font-size:14px;font-weight:600;transition:0.3s;letter-spacing:0.5px;}
+.links a:nth-child(1){background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.2);color:var(--c1);}
+.links a:nth-child(2){background:rgba(34,211,238,0.07);border:1px solid rgba(34,211,238,0.2);color:var(--c3);}
+.links a:nth-child(3){background:rgba(251,191,36,0.07);border:1px solid rgba(251,191,36,0.2);color:var(--c4);}
+.links a:nth-child(4){background:rgba(52,211,153,0.07);border:1px solid rgba(52,211,153,0.2);color:var(--c5);}
+.links a:hover{transform:translateY(-3px);filter:brightness(1.3);box-shadow:0 8px 24px rgba(168,85,247,0.2);}
+
+/* ── SKILLS ── */
+.sgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;}
+.sc{padding:22px 26px;}
+.sh{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.sn{font-size:15px;font-weight:600;}
+.sp{font-family:'Orbitron',sans-serif;font-size:13px;}
+.sbar{height:5px;background:rgba(255,255,255,0.07);border-radius:5px;overflow:hidden;}
+.sfill{height:100%;border-radius:5px;width:0;transition:width 1.4s cubic-bezier(0.4,0,0.2,1);}
+.sf1{background:linear-gradient(90deg,var(--c1),var(--c2));}
+.sf2{background:linear-gradient(90deg,var(--c3),var(--c5));}
+.sf3{background:linear-gradient(90deg,var(--c4),var(--c6));}
+.sf4{background:linear-gradient(90deg,var(--c2),var(--c1));}
+.sp1{color:var(--c2);}
+.sp2{color:var(--c3);}
+.sp3{color:var(--c4);}
+.sp4{color:var(--c6);}
+
+/* ── PROJECTS ── */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px;}
+.pc1::before{background:linear-gradient(90deg,transparent,rgba(168,85,247,0.5),transparent)!important;}
+.pc2::before{background:linear-gradient(90deg,transparent,rgba(34,211,238,0.5),transparent)!important;}
+.pc3::before{background:linear-gradient(90deg,transparent,rgba(251,191,36,0.5),transparent)!important;}
+.pnum{font-family:'Orbitron',sans-serif;font-size:44px;font-weight:900;line-height:1;margin-bottom:6px;opacity:0.1;}
+.ptitle{font-size:19px;font-weight:700;margin-bottom:10px;}
+.pdesc2{color:rgba(255,255,255,0.48);font-size:14px;line-height:1.7;margin-bottom:16px;}
+.ptag2{display:inline-block;font-size:11px;letter-spacing:1.5px;padding:4px 12px;border-radius:4px;text-transform:uppercase;font-weight:600;}
+.pt1{background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.22);color:var(--c1);}
+.pt2{background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.22);color:var(--c3);}
+.pt3{background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.22);color:var(--c4);}
+.pnum1{color:rgba(168,85,247,0.15);}
+.pnum2{color:rgba(34,211,238,0.15);}
+.pnum3{color:rgba(251,191,36,0.15);}
+
+/* ── TWIN ── */
+.ti{text-align:center;padding:52px 20px;}
+.ticon{width:92px;height:92px;border-radius:50%;margin:0 auto 22px;background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(232,121,249,0.1));border:1px solid rgba(168,85,247,0.28);display:flex;align-items:center;justify-content:center;font-size:36px;animation:float 3.5s ease-in-out infinite;box-shadow:0 0 40px rgba(168,85,247,0.15);}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.ti h2{font-family:'Orbitron',sans-serif;font-size:24px;margin-bottom:14px;background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.ti p{color:rgba(255,255,255,0.5);line-height:1.85;max-width:520px;margin:0 auto;font-size:16px;}
+
+/* ── EDUCATION ── */
+.er{display:flex;gap:20px;align-items:flex-start;}
+.eicon{width:52px;height:52px;flex-shrink:0;border-radius:14px;background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.22);display:flex;align-items:center;justify-content:center;font-size:22px;}
+.einfo h3{font-size:19px;font-weight:600;margin-bottom:6px;}
+.einfo p{color:rgba(255,255,255,0.45);font-size:14px;margin-bottom:10px;}
+.ebadge{display:inline-block;background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.22);color:var(--c5);font-size:12px;padding:4px 14px;border-radius:50px;letter-spacing:1px;}
+
+/* ── RESUME ── */
+.rrow{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;}
+.rrow h2{font-family:'Orbitron',sans-serif;font-size:22px;margin-bottom:8px;background:linear-gradient(90deg,var(--c4),var(--c6));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.rrow p{color:rgba(255,255,255,0.45);font-size:15px;}
+.dlbtn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;background:linear-gradient(135deg,rgba(251,191,36,0.12),rgba(251,113,133,0.1));border:1px solid rgba(251,191,36,0.28);color:var(--c4);border-radius:12px;text-decoration:none;font-size:15px;font-weight:600;transition:0.3s;}
+.dlbtn:hover{background:linear-gradient(135deg,var(--c4),var(--c6));color:#04011a;box-shadow:0 0 32px rgba(251,191,36,0.4);transform:translateY(-2px);}
+
+/* ── CONTACT ── */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;}
+.cform{display:flex;flex-direction:column;gap:12px;}
+.cform input,.cform textarea{background:rgba(168,85,247,0.04);border:1px solid rgba(168,85,247,0.12);border-radius:12px;padding:13px 16px;color:white;font-family:'Rajdhani',sans-serif;font-size:15px;outline:none;transition:0.3s;width:100%;}
+.cform input:focus,.cform textarea:focus{border-color:rgba(168,85,247,0.4);background:rgba(168,85,247,0.07);}
+.cform textarea{height:120px;resize:none;}
+.cform button{padding:14px;background:linear-gradient(135deg,var(--c1),var(--c2));color:white;border:none;border-radius:12px;font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;cursor:none;text-transform:uppercase;transition:0.3s;}
+.cform button:hover{box-shadow:0 0 36px rgba(168,85,247,0.55);transform:translateY(-2px);}
+.clist{display:flex;flex-direction:column;gap:14px;}
+.ci{display:flex;align-items:center;gap:14px;padding:16px 20px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:14px;transition:0.3s;}
+.ci:nth-child(1):hover{border-color:rgba(168,85,247,0.3);background:rgba(168,85,247,0.05);}
+.ci:nth-child(2):hover{border-color:rgba(34,211,238,0.3);background:rgba(34,211,238,0.05);}
+.ci:nth-child(3):hover{border-color:rgba(251,191,36,0.3);background:rgba(251,191,36,0.05);}
+.ci:nth-child(4):hover{border-color:rgba(52,211,153,0.3);background:rgba(52,211,153,0.05);}
+.ci:hover{transform:translateX(5px);}
+.ciico{font-size:20px;width:36px;text-align:center;flex-shrink:0;}
+.cilabel{font-size:10px;color:rgba(255,255,255,0.28);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px;}
+.cival1{color:var(--c1);font-size:14px;font-weight:600;}
+.cival2{color:var(--c3);font-size:14px;font-weight:600;}
+.cival3{color:var(--c4);font-size:14px;font-weight:600;}
+.cival4{color:var(--c5);font-size:14px;font-weight:600;}
+
+/* ── FOOTER ── */
+footer{text-align:center;padding:48px 20px;border-top:1px solid rgba(168,85,247,0.08);color:rgba(255,255,255,0.2);font-size:14px;letter-spacing:1px;position:relative;z-index:1;}
+footer .fs{background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+/* ── CHAT ── */
+.chatbtn{position:fixed;bottom:26px;right:26px;width:54px;height:54px;background:linear-gradient(135deg,var(--c1),var(--c2));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:none;box-shadow:0 0 30px rgba(168,85,247,0.4);z-index:200;transition:0.3s;}
+.chatbtn:hover{transform:scale(1.12);box-shadow:0 0 50px rgba(232,121,249,0.6);}
+.chatbox{display:none;position:fixed;bottom:92px;right:26px;width:290px;background:rgba(1,0,9,0.97);border:1px solid rgba(168,85,247,0.2);border-radius:20px;overflow:hidden;z-index:200;animation:cpop 0.3s ease;backdrop-filter:blur(28px);}
+@keyframes cpop{from{opacity:0;transform:translateY(14px) scale(0.96)}to{opacity:1;transform:none}}
+.chead{padding:13px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(168,85,247,0.1);background:linear-gradient(90deg,rgba(168,85,247,0.08),rgba(232,121,249,0.05));}
+.chead span{font-size:14px;font-weight:600;letter-spacing:0.5px;background:linear-gradient(90deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.ccl{cursor:none;font-size:15px;color:rgba(255,255,255,0.3);transition:0.2s;-webkit-text-fill-color:rgba(255,255,255,0.3);}
+.ccl:hover{-webkit-text-fill-color:white;}
+.clog{padding:12px;height:170px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;font-size:13px;}
+.clog::-webkit-scrollbar{width:3px;}
+.clog::-webkit-scrollbar-thumb{background:rgba(168,85,247,0.3);border-radius:3px;}
+.my{align-self:flex-end;background:linear-gradient(135deg,rgba(168,85,247,0.2),rgba(232,121,249,0.15));padding:7px 12px;border-radius:12px 12px 2px 12px;max-width:88%;}
+.mai{align-self:flex-start;background:rgba(255,255,255,0.04);padding:7px 12px;border-radius:12px 12px 12px 2px;max-width:88%;color:rgba(255,255,255,0.75);}
+.cinput{display:flex;gap:8px;padding:10px 12px;border-top:1px solid rgba(168,85,247,0.08);}
+.cinput input{flex:1;background:rgba(168,85,247,0.05);border:1px solid rgba(168,85,247,0.15);border-radius:8px;padding:8px 10px;color:white;font-family:'Rajdhani',sans-serif;font-size:13px;outline:none;}
+.cinput input:focus{border-color:rgba(168,85,247,0.35);}
+.cinput button{padding:8px 14px;background:linear-gradient(135deg,var(--c1),var(--c2));color:white;border:none;border-radius:8px;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;cursor:none;}
+
+/* Stars */
+.star{position:fixed;border-radius:50%;background:white;pointer-events:none;animation:tw var(--d) var(--dl) infinite;}
+@keyframes tw{0%,100%{opacity:0.03}50%{opacity:var(--op)}}
+
+/* Shooting star */
+.shoot{position:fixed;height:1px;background:linear-gradient(90deg,transparent,rgba(168,85,247,0.8),white,transparent);border-radius:2px;pointer-events:none;z-index:0;animation:shoot var(--sd) var(--sdl) linear infinite;opacity:0;}
+@keyframes shoot{0%{opacity:0;transform:translateX(0) translateY(0)}5%{opacity:1}80%{opacity:0.5}100%{opacity:0;transform:translateX(300px) translateY(80px)}}
+
+@media(max-width:640px){nav ul{display:none;}nav{padding:14px 20px;}.pw{gap:40px;}.rrow{flex-direction:column;}.pname,.pname-shadow{font-size:clamp(36px,11vw,52px)!important;}}
+</style>
+</head>
+<body>
+
+<!-- Auroras -->
+<div class="aurora a1"></div>
+<div class="aurora a2"></div>
+<div class="aurora a3"></div>
+<div class="aurora a4"></div>
+<div class="aurora a5"></div>
+<div class="grid-bg"></div>
+<div id="sf"></div>
+
+<!-- Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Nav -->
+<nav>
+  <div class="logo">NIVEDHA.S</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-tag">AI Developer</div>
+  <h1><span class="hg">Hi, I'm Nivedha.S 👋</span></h1>
+  <div class="hero-sub">Building Future Experiences</div>
+  <div class="hero-btns">
+    <a href="#projects" class="bp">View Projects</a>
+    <a href="resume.pdf" download class="bo">Download CV</a>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</div>
+
+<!-- About -->
+<section id="about">
+  <div class="sl">01 — About</div>
+  <div class="st">Profile</div>
+  <div class="card" style="padding:48px 40px;">
+    <div class="pw">
+      <!-- Photo -->
+      <div class="pz">
+        <div class="paura"></div>
+        <div class="r4"></div>
+        <div class="r3"></div>
+        <div class="r2"></div>
+        <div class="r1"></div>
+        <img src="profile.jpg" alt="Nivedha S">
+        <div class="sbadge"><span class="sdot"></span>Available for Work</div>
+      </div>
+      <!-- Text -->
+      <div class="pt">
+        <div class="pe">AI Developer · India</div>
+        <div class="pname-wrap">
+          <div class="pname">NIVEDHA.S</div>
+          <div class="pname-shadow" aria-hidden="true">NIVEDHA.S</div>
+        </div>
+        <div class="ptags">
+          <div class="ptag ptag-v">B.E Computer Science</div>
+          <div class="ptag ptag-c">AI Builder</div>
+        </div>
+        <p class="pdesc">I create modern, AI-powered applications with a focus on design, interaction, and innovation. Always exploring new ideas and building for the future.</p>
+        <div class="pstats">
+          <div class="ps"><div class="psn psn-v">3+</div><div class="psl">Projects</div></div>
+          <div class="ps"><div class="psn psn-c">4+</div><div class="psl">Skills</div></div>
+          <div class="ps"><div class="psn psn-a">∞</div><div class="psl">Passion</div></div>
+          <div class="ps"><div class="psn psn-v">1</div><div class="psl">Vision</div></div>
+        </div>
+        <div class="links">
+          <a href="mailto:nivedhasrinivasan2007@gmail.com">📧 Email</a>
+          <a href="https://www.linkedin.com/in/nivedha-s-nivi" target="_blank">💼 LinkedIn</a>
+          <a href="https://github.com/nivedhasrinivasan2007-ops" target="_blank">🐙 GitHub</a>
+          <a href="https://wa.me/916382117822" target="_blank">💬 WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <div class="sl">02 — Skills</div>
+  <div class="st">Technical Skills</div>
+  <div class="sgrid">
+    <div class="card sc"><div class="sh"><span class="sn">C Programming</span><span class="sp sp1">90%</span></div><div class="sbar"><div class="sfill sf1" data-width="90"></div></div></div>
+    <div class="card sc"><div class="sh"><span class="sn">C++</span><span class="sp sp2">90%</span></div><div class="sbar"><div class="sfill sf2" data-width="90"></div></div></div>
+    <div class="card sc"><div class="sh"><span class="sn">HTML & CSS</span><span class="sp sp3">95%</span></div><div class="sbar"><div class="sfill sf3" data-width="95"></div></div></div>
+    <div class="card sc"><div class="sh"><span class="sn">JavaScript</span><span class="sp sp4">70%</span></div><div class="sbar"><div class="sfill sf4" data-width="70"></div></div></div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+  <div class="sl">03 — Work</div>
+  <div class="st">My Projects</div>
+  <div class="pgrid">
+    <div class="card pc1"><div class="pnum pnum1">01</div><div class="ptitle">Password Generator</div><p class="pdesc2">A secure password creation tool that generates strong, random passwords to keep your accounts safe.</p><div class="ptag2 pt1">Security</div></div>
+    <div class="card pc2"><div class="pnum pnum2">02</div><div class="ptitle">Library Management</div><p class="pdesc2">A complete book tracking system to manage library inventory, lending, and returns efficiently.</p><div class="ptag2 pt2">Management</div></div>
+    <div class="card pc3"><div class="pnum pnum3">03</div><div class="ptitle">Canteen Management</div><p class="pdesc2">A food ordering and management system designed for canteen operations and menu tracking.</p><div class="ptag2 pt3">Operations</div></div>
+  </div>
+</section>
+
+<!-- Digital Twin -->
+<section>
+  <div class="card"><div class="ti">
+    <div class="ticon">🧠</div>
+    <h2>My Digital Twin</h2>
+    <p>I am Nivedha's AI twin. I think, design, and build like her — always exploring new ideas and pushing the boundaries of what's possible.</p>
+  </div></div>
+</section>
+
+<!-- Education -->
+<section>
+  <div class="sl">04 — Education</div>
+  <div class="st">Background</div>
+  <div class="card"><div class="er">
+    <div class="eicon">🎓</div>
+    <div class="einfo">
+      <h3>B.E Computer Science Engineering</h3>
+      <p>Focused on AI, software development, and modern computing systems.</p>
+      <div class="ebadge">Currently Pursuing</div>
+    </div>
+  </div></div>
+</section>
+
+<!-- Resume -->
+<section>
+  <div class="card"><div class="rrow">
+    <div><h2>My Resume</h2><p>Download my full resume to learn more about my experience and skills.</p></div>
+    <a href="resume.pdf" download class="dlbtn">⬇ Download Resume</a>
+  </div></div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="sl">05 — Contact</div>
+  <div class="st">Let's Work Together 🚀</div>
+  <div class="cgrid">
+    <div class="card">
+      <div class="cform">
+        <input placeholder="Your Name" id="cname">
+        <input placeholder="Your Email" id="cemail" type="email">
+        <input placeholder="Your Phone Number" id="cphone" type="tel">
+        <textarea placeholder="Your Message" id="cmsg"></textarea>
+        <button onclick="submitForm()">Send Message</button>
+        <div id="fmsg" style="font-size:13px;color:#a855f7;display:none;margin-top:4px;">✅ Message sent! I'll get back to you soon.</div>
+      </div>
+    </div>
+    <div class="clist">
+      <div class="ci"><div class="ciico">📧</div><div><div class="cilabel">Email</div><div class="cival1">nivedhasrinivasan2007@gmail.com</div></div></div>
+      <div class="ci"><div class="ciico">💼</div><div><div class="cilabel">LinkedIn</div><div class="cival2">nivedha-s-nivi</div></div></div>
+      <div class="ci"><div class="ciico">🐙</div><div><div class="cilabel">GitHub</div><div class="cival3">nivedhasrinivasan2007-ops</div></div></div>
+      <div class="ci"><div class="ciico">📍</div><div><div class="cilabel">Location</div><div class="cival4">India</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer><p>✨ Portfolio made by <span class="fs">Nivedha.S</span> · AI Developer · India</p></footer>
+
+<!-- Chat -->
+<div class="chatbtn" onclick="toggleChat()">💬</div>
+<div class="chatbox" id="chat">
+  <div class="chead"><span>🧠 Ask Nivedha's AI</span><span class="ccl" onclick="toggleChat()">✕</span></div>
+  <div class="clog" id="clog"><div class="mai">Hi! I'm Nivedha's AI twin. Ask me anything! 👋</div></div>
+  <div class="cinput">
+    <input id="msg" placeholder="Type a message..." onkeydown="if(event.key==='Enter')send()">
+    <button onclick="send()">Send</button>
+  </div>
+</div>
+
+<script>
+// Stars
+const sf=document.getElementById('sf');
+for(let i=0;i<140;i++){
+  const s=document.createElement('div');
+  s.className='star';
+  const sz=Math.random()<0.75?1:Math.random()<0.9?1.5:2.5;
+  s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;`;
+  s.style.setProperty('--d',(1.5+Math.random()*5)+'s');
+  s.style.setProperty('--dl',(Math.random()*8)+'s');
+  s.style.setProperty('--op',0.1+Math.random()*0.75);
+  sf.appendChild(s);
+}
+// Shooting stars
+const colors=['rgba(168,85,247,0.9)','rgba(34,211,238,0.9)','rgba(251,191,36,0.9)'];
+for(let i=0;i<5;i++){
+  const s=document.createElement('div');
+  s.className='shoot';
+  const w=80+Math.random()*120;
+  const col=colors[Math.floor(Math.random()*colors.length)];
+  s.style.cssText=`width:${w}px;left:${Math.random()*80}%;top:${Math.random()*60}%;background:linear-gradient(90deg,transparent,${col},white,transparent);`;
+  s.style.setProperty('--sd',(6+Math.random()*10)+'s');
+  s.style.setProperty('--sdl',(Math.random()*12)+'s');
+  sf.appendChild(s);
+}
+
+// Cursor
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+document.addEventListener('mousemove',e=>{
+  cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';
+  ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';
+});
+
+// Scroll reveal
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('show');
+      e.target.querySelectorAll('.sfill').forEach(b=>b.style.width=b.dataset.width+'%');
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('section').forEach(s=>obs.observe(s));
+
+// Chat
+function toggleChat(){const b=document.getElementById('chat');b.style.display=b.style.display==='block'?'none':'block';}
+function send(){
+  const inp=document.getElementById('msg'),txt=inp.value.trim();
+  if(!txt)return;
+  const log=document.getElementById('clog');
+  log.innerHTML+=`<div class="my">${txt}</div>`;
+  inp.value='';
+  const m=txt.toLowerCase();
+  let r='Feel free to reach out via email or LinkedIn! 😊';
+  if(m.includes('hello')||m.includes('hi'))r='Hello! Great to meet you! How can I help? 😊';
+  else if(m.includes('who')||m.includes('nivedha'))r="I'm Nivedha.S, an AI Developer from India! 🚀";
+  else if(m.includes('project'))r='I built a Password Generator, Library System, and Canteen Management app!';
+  else if(m.includes('skill')||m.includes('language'))r='I know C, C++, HTML, CSS, and JavaScript!';
+  else if(m.includes('contact')||m.includes('email'))r='Email: nivedhasrinivasan2007@gmail.com 📧';
+  else if(m.includes('education')||m.includes('study'))r="I'm pursuing B.E in Computer Science Engineering! 🎓";
+  else if(m.includes('resume'))r='Download my resume from the Resume section above! 📄';
+  setTimeout(()=>{log.innerHTML+=`<div class="mai">${r}</div>`;log.scrollTop=log.scrollHeight;},420);
+  log.scrollTop=log.scrollHeight;
+}
+
+// Form
+function submitForm(){
+  const n=document.getElementById('cname').value.trim(),e=document.getElementById('cemail').value.trim(),m=document.getElementById('cmsg').value.trim();
+  if(!n||!e||!m){alert('Please fill in Name, Email and Message!');return;}
+  document.getElementById('fmsg').style.display='block';
+  ['cname','cemail','cphone','cmsg'].forEach(id=>document.getElementById(id).value='');
+}
+</script>
+</body>
+</html>
